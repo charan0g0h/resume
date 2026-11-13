@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Hari Charan Kommi — Full Stack Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=JetBrains+Mono:wght@400&display=swap">
+<style>
+:root{
+  --bg:#050505;--surface:#0F0F0F;--ink:#F2F2F2;--muted:#9E9E9E;--accent:#F2F2F2;--accent-ink:#0A0A0A;--line:#242424;--glass:rgba(255,255,255,.035);--glow:rgba(255,255,255,.10);--grain:.07;--h1a:#FFFFFF;--h1b:#7C7C7C;
+  --code-bg:#111111;--code-ink:#D0D0D0;--code-key:#8C8C8C;--code-str:#FFFFFF;--code-num:#CFCFCF;
+  --display:"Newsreader",Georgia,"Times New Roman",serif;--mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+:root[data-theme="light"]{--bg:#FFFFFF;--surface:#FFFFFF;--ink:#111111;--muted:#666666;--accent:#111111;--accent-ink:#FFFFFF;--line:#E3E3E3;--glass:rgba(0,0,0,.025);--glow:rgba(0,0,0,.07);--grain:.05;--h1a:#000000;--h1b:#8A8A8A;--code-bg:#F6F6F6;--code-ink:#333333;--code-key:#777777;--code-str:#000000;--code-num:#444444;}
+html{height:100%;scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 70px);color-scheme:light dark}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:radial-gradient(900px 520px at 72% -5%,var(--glow),transparent 70%),radial-gradient(700px 500px at 0% 45%,var(--glass),transparent 70%),var(--bg);color:var(--ink);font-family:var(--display);font-size:19px;line-height:1.7;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:8;opacity:var(--grain);background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .5 0 0 0 0 .5 0 0 0 0 .5 0 0 0 1 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+.spot{position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(420px circle at var(--mx,70%) var(--my,12%),var(--glow),transparent 65%)}
+main{position:relative;z-index:1}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px;gap:16px}
+.logo{font-weight:500;text-decoration:none;font-size:20px}
+.links{display:flex;gap:22px;align-items:center;overflow-x:auto;scrollbar-width:none}
+.links a{text-decoration:none;color:var(--muted);font-size:16px;white-space:nowrap}
+.links a:hover{color:var(--ink)}
+#theme{background:none;border:1px solid var(--line);color:var(--ink);width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:16px;flex:none}
+/* hero */
+.hero{padding:72px 0 56px;display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+.status{display:inline-flex;align-items:center;gap:10px;font-size:16px;font-style:italic;color:var(--muted)}
+.status i{width:6px;height:6px;border-radius:50%;background:var(--ink)}
+h1{font-size:clamp(48px,7vw,88px);line-height:1;letter-spacing:-.035em;font-weight:400;margin:26px 0 24px;background:linear-gradient(180deg,var(--h1a) 35%,var(--h1b));-webkit-background-clip:text;background-clip:text;color:transparent;padding-bottom:.08em}
+.lead{font-size:21px;color:var(--muted);max-width:30em;margin:0 0 28px}
+.cta{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-block;text-decoration:none;font-weight:500;font-size:17px;padding:12px 26px;border-radius:99px;border:1px solid var(--line);background:var(--glass);transition:border-color .15s}
+.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.btn:hover{border-color:var(--ink)}
+.code{background:linear-gradient(160deg,var(--code-bg),var(--surface));color:var(--code-ink);border-radius:16px;box-shadow:0 40px 90px -40px var(--glow);font-family:var(--mono);font-size:13px;line-height:1.7;overflow:hidden;border:1px solid var(--line)}
+.code-head{display:flex;justify-content:space-between;padding:12px 18px;border-bottom:1px solid var(--line);color:var(--code-key);font-size:12.5px}
+.code-head b{color:var(--code-str);font-weight:400}
+.code pre{margin:0;padding:18px;min-height:340px;white-space:pre-wrap;word-break:break-word}
+.k{color:var(--code-key)}.s{color:var(--code-str)}.n{color:var(--code-num)}
+.caret{display:inline-block;width:8px;height:15px;background:var(--code-str);vertical-align:-2px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+/* sections */
+section{padding:72px 0;position:relative}
+section::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--ink) 50%,transparent);opacity:.25}
+.marquee{overflow:hidden;border-block:1px solid var(--line);padding:20px 0;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.track{display:flex;gap:48px;width:max-content;animation:slide 45s linear infinite}
+.track span{font-size:34px;font-style:italic;color:var(--muted);white-space:nowrap}
+.track span::after{content:"✦";margin-left:48px;font-style:normal;font-size:14px;color:var(--ink);opacity:.4}
+@keyframes slide{to{transform:translateX(-50%)}}
+h2{font-size:clamp(28px,4vw,38px);letter-spacing:-.015em;line-height:1.1;margin:0 0 8px;font-weight:400}
+.sub{color:var(--muted);margin:0 0 36px;max-width:36em}
+/* projects */
+.proj{display:grid;grid-template-columns:200px 1fr;gap:12px 36px;padding:32px;margin-bottom:16px;border:1px solid var(--line);border-radius:16px;background:var(--glass);transition:opacity .25s,border-color .25s,background .25s}
+.proj:hover{border-color:color-mix(in srgb,var(--ink) 40%,var(--line));background:var(--surface)}
+.proj.dim{opacity:.28}
+.proj .meta{font-style:italic;font-size:16px;color:var(--muted)}
+.proj h3{font-size:25px;font-weight:500;letter-spacing:-.01em;margin:0 0 4px;line-height:1.2}
+.proj .tag{color:var(--muted);font-style:italic;margin:0 0 12px}
+.proj ul{margin:0 0 16px;padding-left:20px;color:var(--muted)}
+.proj li{margin-bottom:6px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-family:var(--display);font-size:15px;line-height:1.4;padding:3px 11px;border-radius:2px;border:1px solid var(--line);background:var(--surface);color:var(--ink)}
+.proj a.repo{font-weight:600;font-size:14px;margin-right:14px}
+/* skills */
+.skills{display:grid;grid-template-columns:200px 1fr;gap:18px 36px;align-items:start}
+.skills dt{font-style:italic;color:var(--muted);padding-top:3px}
+.skills dd{margin:0;display:flex;flex-wrap:wrap;gap:8px}
+button.chip{cursor:pointer;font-family:var(--display)}
+button.chip:hover{border-color:var(--accent)}
+button.chip[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.hint{font-size:14px;color:var(--muted);margin-top:22px}
+/* education + stats */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+.edu{list-style:none;margin:0;padding:0 0 0 22px;border-left:2px solid var(--line)}
+.edu li{position:relative;padding-bottom:28px}
+.edu li::before{content:"";position:absolute;left:-29px;top:9px;width:12px;height:12px;border-radius:50%;background:var(--bg);border:2px solid var(--accent)}
+.edu strong{display:block;font-size:20px;font-weight:500;line-height:1.3}
+.edu span{color:var(--muted);font-size:15px}
+.edu em{font-style:italic;font-size:16px;color:var(--muted);display:block;margin-bottom:2px}
+.big{font-size:clamp(56px,8vw,84px);font-weight:400;letter-spacing:-.03em;line-height:1}
+.topics{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+/* contact */
+.contact{text-align:left}
+.contact a.mail{display:inline-block;font-size:clamp(22px,4.5vw,40px);font-weight:400;letter-spacing:-.01em;text-decoration:none;border-bottom:1px solid var(--ink);word-break:break-all;line-height:1.3}
+.contact p{margin:22px 0 0;color:var(--muted)}
+.contact p a{margin-right:20px;color:var(--ink)}
+footer{padding:28px 0 40px;color:var(--muted);font-size:14px;border-top:1px solid var(--line)}
+@media (max-width:820px){
+  .hero,.two{grid-template-columns:1fr;gap:36px}
+  .proj,.skills{grid-template-columns:1fr}
+  .hero{padding-top:44px}
+  .logo+.links{flex:1;justify-content:flex-end}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<div class="spot" aria-hidden="true"></div>
+<nav>
+  <div class="wrap">
+    <a class="logo" href="#top">Hari Charan</a>
+    <div class="links">
+      <a href="#projects">Projects</a><a href="#skills">Skills</a><a href="#education">Education</a><a href="#contact">Contact</a>
+      <button id="theme" aria-label="Toggle light and dark theme">◐</button>
+    </div>
+  </div>
+</nav>
+
+<main id="top">
+<div class="wrap">
+  <header class="hero">
+    <div>
+      <span class="status"><i></i>Open to internships and backend roles</span>
+      <h1>Hari Charan Kommi</h1>
+      <p class="lead">I’m a computer science student who builds full-stack web applications with Java, Spring Boot, React and PostgreSQL, and trains deep learning models with Python and TensorFlow.</p>
+      <div class="cta">
+        <a class="btn primary" href="#projects">See my projects</a>
+        <a class="btn" href="mailto:kharicharan456@gmail.com">Email me</a>
+      </div>
+    </div>
+    <div class="code" aria-label="Profile summary as a JSON response">
+      <div class="code-head"><span>GET /hari-charan</span><b>200 OK</b></div>
+      <pre id="json" aria-live="off"></pre>
+    </div>
+  </header>
+
+  <div class="marquee" aria-hidden="true"><div class="track"><span>Java</span><span>Spring Boot</span><span>React</span><span>PostgreSQL</span><span>WebSockets</span><span>JWT</span><span>Python</span><span>TensorFlow</span><span>FastAPI</span><span>Tailwind CSS</span><span>Java</span><span>Spring Boot</span><span>React</span><span>PostgreSQL</span><span>WebSockets</span><span>JWT</span><span>Python</span><span>TensorFlow</span><span>FastAPI</span><span>Tailwind CSS</span></div></div>
+
+  <section id="projects">
+    <h2>Projects</h2>
+    <p class="sub">Three things I’ve built and shipped.</p>
+
+    <article class="proj" data-tech="Java,Spring Boot,Spring Security,JWT,React,PostgreSQL,Tailwind CSS">
+      <div class="meta">Full-stack<br>Trading simulator</div>
+      <div>
+        <h3>Stock X Change</h3>
+        <p class="tag">Real-time stock market simulation platform</p>
+        <ul>
+          <li>Built a full-stack stock market simulator that lets users trade virtual stocks using live market data.</li>
+          <li>Developed 15+ REST APIs for authentication, portfolio management, stock trading and transaction history.</li>
+          
+          
+        </ul>
+        <div class="chips"><span class="chip">Java</span><span class="chip">Spring Boot</span><span class="chip">Spring Security</span><span class="chip">JWT</span><span class="chip">React</span><span class="chip">PostgreSQL</span><span class="chip">Tailwind CSS</span></div>
+      </div>
+    </article>
+
+    <article class="proj" data-tech="Java,Spring Boot,React,WebSockets,PeerJS,PostgreSQL,JWT">
+      <div class="meta">Real-time<br>Messaging and video</div>
+      <div>
+        <h3>ZChat</h3>
+        <p class="tag">Messaging and peer-to-peer video calling</p>
+        <ul>
+          <li>Developed a real-time messaging and video calling platform using WebSockets and PeerJS, with JWT authentication.</li>
+          <li>Deployed the backend and PostgreSQL on Railway and the frontend on Vercel.</li>
+          
+        </ul>
+        <div class="chips"><span class="chip">Java</span><span class="chip">Spring Boot</span><span class="chip">React</span><span class="chip">WebSockets</span><span class="chip">PeerJS</span><span class="chip">PostgreSQL</span></div>
+      </div>
+    </article>
+
+    <article class="proj" data-tech="Python,TensorFlow,Keras,FastAPI,React,Pandas,NumPy">
+      <div class="meta">Machine learning<br>Health data</div>
+      <div>
+        <h3>Obesity Prediction</h3>
+        <p class="tag">Neural network that predicts obesity levels</p>
+        <ul>
+          <li>Built a full-stack machine learning application that predicts obesity levels from user health data using a TensorFlow neural network.</li>
+          <li>Developed the backend in Python (FastAPI) for model inference and connected it to a React frontend for real-time predictions and visualization.</li>
+        </ul>
+        <div class="chips"><span class="chip">Python</span><span class="chip">TensorFlow</span><span class="chip">Keras</span><span class="chip">FastAPI</span><span class="chip">React</span><span class="chip">Pandas</span><span class="chip">NumPy</span></div>
+      </div>
+    </article>
+  </section>
+
+  <section id="skills">
+    <h2>Skills</h2>
+    <p class="sub">Select a skill to see which projects use it.</p>
+    <dl class="skills">
+      <dt>Languages</dt><dd><button class="chip" aria-pressed="false">Java</button><button class="chip" aria-pressed="false">Python</button><span class="chip">JavaScript</span><span class="chip">SQL</span><span class="chip">C</span></dd>
+      <dt>Backend</dt><dd><button class="chip" aria-pressed="false">Spring Boot</button><button class="chip" aria-pressed="false">Spring Security</button><span class="chip">REST APIs</span><button class="chip" aria-pressed="false">JWT</button><button class="chip" aria-pressed="false">WebSockets</button></dd>
+      <dt>Frontend</dt><dd><button class="chip" aria-pressed="false">React</button><span class="chip">Vite</span><button class="chip" aria-pressed="false">Tailwind CSS</button></dd>
+      
+      <dt>Machine learning</dt><dd><button class="chip" aria-pressed="false">TensorFlow</button><button class="chip" aria-pressed="false">Keras</button><span class="chip">Scikit-learn</span><button class="chip" aria-pressed="false">Pandas</button><button class="chip" aria-pressed="false">NumPy</button></dd>
+      <dt>Tools</dt><dd><span class="chip">Git</span><span class="chip">GitHub</span><span class="chip">Maven</span><span class="chip">Railway</span><span class="chip">Vercel</span></dd>
+    </dl>
+  </section>
+
+  <section id="education">
+    <div class="two">
+      <div>
+        <h2>Education</h2>
+        <p class="sub">Where I’ve studied.</p>
+        <ul class="edu">
+          <li><em>2024–2028</em><strong>IIIT Bhubaneswar</strong><span>B.Tech Computer Engineering · CGPA 8.4</span></li>
+          <li><em>2023–2024</em><strong>Narayana Junior College, Hyderabad</strong><span>Class XII · 93%</span></li>
+          <li><em>2021–2022</em><strong>Sri Chaitanya School, Hyderabad</strong><span>Class X · CGPA 9.7</span></li>
+        </ul>
+      </div>
+      <div>
+        <h2>Coding profiles</h2>
+        <p class="sub">Where I practice and contribute.</p>
+        <div class="big" id="count" data-to="200">0</div>
+        <div>DSA problems solved on LeetCode</div>
+        <div class="topics">
+          <span class="chip">Active open source contributor</span><span class="chip">Regular in coding contests</span><span class="chip">Full-stack and ML projects on GitHub</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <h2>Let’s work together</h2>
+    <p class="sub">I’m looking for internships and backend roles. The fastest way to reach me is email.</p>
+    <a class="mail" href="mailto:kharicharan456@gmail.com">kharicharan456@gmail.com</a>
+    <p><a href="tel:+919182499566">+91 91824 99566</a><a href="https://github.com/charan0g0h" rel="noopener">GitHub</a><a href="https://www.linkedin.com/" rel="noopener">LinkedIn</a><a href="https://leetcode.com/" rel="noopener">LeetCode</a></p>
+  </section>
+</div>
+</main>
+
+<footer><div class="wrap">© 2026 Hari Charan Kommi</div></footer>
+
+<script>
+(function(){
+  var root=document.documentElement, reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+  // theme
+  try{var t=localStorage.getItem("theme");if(t)root.setAttribute("data-theme",t)}catch(e){}
+  document.getElementById("theme").addEventListener("click",function(){
+    var dark=root.getAttribute("data-theme")!=="light";
+    var next=dark?"light":"dark";root.setAttribute("data-theme",next);
+    try{localStorage.setItem("theme",next)}catch(e){}
+  });
+  // typed JSON
+  var html='{\n  <span class="k">"name"</span>: <span class="s">"Hari Charan Kommi"</span>,\n  <span class="k">"role"</span>: <span class="s">"Full Stack Developer"</span>,\n  <span class="k">"school"</span>: <span class="s">"IIIT Bhubaneswar"</span>,\n  <span class="k">"cgpa"</span>: <span class="n">8.4</span>,\n  <span class="k">"stack"</span>: [<span class="s">"Java"</span>, <span class="s">"Spring Boot"</span>,\n    <span class="s">"React"</span>, <span class="s">"PostgreSQL"</span>],\n  <span class="k">"leetcode"</span>: <span class="n">200</span>,\n  <span class="k">"projects"</span>: [<span class="s">"Stock X Change"</span>,\n    <span class="s">"ZChat"</span>, <span class="s">"Obesity Prediction"</span>],\n  <span class="k">"available"</span>: <span class="n">true</span>\n}';
+  var pre=document.getElementById("json");
+  if(reduce){pre.innerHTML=html}else{
+    var i=0;(function step(){
+      if(html[i]==="<"){i=html.indexOf(">",i)+1;while(html.substr(i,2)!=="</"&&i<html.length&&html[i]!=="<")i++;}
+      i=Math.min(i+2,html.length);
+      var cut=html.slice(0,i);
+      var open=(cut.match(/<span/g)||[]).length-(cut.match(/<\/span>/g)||[]).length;
+      var lt=cut.lastIndexOf("<"),gt=cut.lastIndexOf(">");if(lt>gt){cut=cut.slice(0,lt);open=(cut.match(/<span/g)||[]).length-(cut.match(/<\/span>/g)||[]).length}
+      pre.innerHTML=cut+"</span>".repeat(Math.max(open,0))+'<span class="caret"></span>';
+      if(i<html.length)setTimeout(step,16);else pre.innerHTML=html;
+    })();
+  }
+  // counter
+  var c=document.getElementById("count"),to=+c.dataset.to;
+  function run(){if(reduce){c.textContent=to+"+";return}var s=performance.now();(function f(n){var p=Math.min((n-s)/1200,1);c.textContent=Math.round(to*(1-Math.pow(1-p,3)))+(p===1?"+":"");if(p<1)requestAnimationFrame(f)})(s)}
+  if("IntersectionObserver" in window){new IntersectionObserver(function(e,o){if(e[0].isIntersecting){run();o.disconnect()}}).observe(c)}else run();
+  // cursor spotlight
+  if(!reduce&&matchMedia("(pointer:fine)").matches){var sp=document.querySelector(".spot"),raf=0,mx=0,my=0;addEventListener("pointermove",function(e){mx=e.clientX;my=e.clientY;if(!raf)raf=requestAnimationFrame(function(){raf=0;sp.style.setProperty("--mx",mx+"px");sp.style.setProperty("--my",my+"px")})})}
+  // skill filter
+  var projs=[].slice.call(document.querySelectorAll(".proj")),active=null;
+  [].forEach.call(document.querySelectorAll("button.chip"),function(b){
+    b.addEventListener("click",function(){
+      var name=b.textContent;active=(active===name)?null:name;
+      [].forEach.call(document.querySelectorAll("button.chip"),function(x){x.setAttribute("aria-pressed",String(x.textContent===active))});
+      projs.forEach(function(p){var has=!active||p.dataset.tech.split(",").indexOf(active)>-1;p.classList.toggle("dim",!has)});
+      if(active)document.getElementById("projects").scrollIntoView({behavior:reduce?"auto":"smooth"});
+    });
+  });
+})();
+</script>
+</body>
+</html>
